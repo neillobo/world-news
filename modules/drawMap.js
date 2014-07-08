@@ -51,7 +51,7 @@ var zoom = d3.behavior.zoom()
 			.attr('d',path)
 			.attr('id',function(d,i) {return d.id; })
 			.attr('title', function(d,i) {return d.properties.name; })
-			.style('fill', function(d,i) {return "#B8DBF2" });
+			.style('fill', function(d,i) {return "#AFBCC4" });
 
 
 	  var offsetL = document.getElementById('container').offsetLeft+20;

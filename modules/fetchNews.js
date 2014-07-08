@@ -6,9 +6,7 @@ Placemaker.config.appID = "0jB5lijV34F9pmGIxH1KxwYifXQa4wtlcNo2KtaCbtoQr9qSlwga.
   function initialize() {
       //fetch feed
     var feed = new google.feeds.Feed("http://www.reddit.com/r/worldnews/.rss");
-    feed.setNumEntries(10);
-
-    
+    feed.setNumEntries(20);
 
   feed.load(function(result) {
     if (!result.error) {
@@ -33,7 +31,9 @@ Placemaker.config.appID = "0jB5lijV34F9pmGIxH1KxwYifXQa4wtlcNo2KtaCbtoQr9qSlwga.
 
       (function(index){
         // debugger;
+        // console.log(database[index].title);
         var str = database[index].title+database[index].link
+
 
         Placemaker.getPlaces(str, index, function(loc){ 
           if(Array.isArray(loc.match)){  
