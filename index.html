@@ -12,7 +12,32 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script src="./js/JSPlacemaker.js"></script>
 <script src="./modules/drawMap.js"></script> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="./modules/fetchNews.js"></script>
+<script>
+$('document').ready(function(){
+	
+	setTimeout(function(){
+		console.log(database);
+	},5000);
+
+	 d3.csv("data/cities.csv", function(error, data) {
+        g.selectAll("circle")
+           .data(data)
+           .enter()
+           .append("circle")
+           .attr("cx", function(d) {
+                   return projection([d.lon, d.lat])[0];
+           })
+           .attr("cy", function(d) {
+                   return projection([d.lon, d.lat])[1];
+           })
+           .attr("r", 6)
+           .style("fill", "#BA2818");
+      });
+
+});
+</script>
 
 </body>
 </html>

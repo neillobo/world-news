@@ -4,7 +4,7 @@ Placemaker = function(){
   }
   function analyzeURL(url){/*TODO*/}
   function analyzeFeed(url){/*TODO*/}
-  function analyzeText(text,callback,locale){
+  function analyzeText(text,index,callback,locale){
     if(config.appID==='INSERT-ID-HERE'){
      alert('Invalid Application ID, please override the configuration');
     } else {
@@ -13,23 +13,28 @@ Placemaker = function(){
      if(locale!==''){
        query += ' and inputLanguage="'+locale+'"';
      }
-     seed(query);
-     Placemaker.callback = callback;   
+
+     var callbackKey = 'key' + index;
+     Placemaker.callbacks = Placemaker.callbacks || {};
+     Placemaker.callbacks[callbackKey] = function(o) {
+       retrieve(o, callback)
+     }
+     seed(query, callbackKey);
     }
   }
-  function seed(query){
+  function seed(query, callbackKey){
     query += ' and appid="'+config.appID+'"';
     var url = 'http://query.yahooapis.com/v1/public/yql?q='+
               encodeURIComponent(query)+'&format=json'+
               '&env=http%3A%2F%2Fdatatables.org%2Falltables.env&'+
-              'callback=Placemaker.retrieve';
+              'callback=Placemaker.callbacks.' + callbackKey;
     var s = document.createElement('script');
     s.setAttribute('src',url);
     document.getElementsByTagName('head')[0].appendChild(s);
   }
-  function retrieve(o){
+  function retrieve(o, callback){
     var data = o.query.results.matches || {'error':'no locations found'};
-    Placemaker.callback(data);
+    callback(data);
   }
   return{
     config:config,

@@ -38,20 +38,7 @@ var zoom = d3.behavior.zoom()
 		topography = countries;
 		draw(topography);
 
-		 d3.csv("data/cities.csv", function(error, data) {
-        g.selectAll("circle")
-           .data(data)
-           .enter()
-           .append("circle")
-           .attr("cx", function(d) {
-                   return projection([d.lon, d.lat])[0];
-           })
-           .attr("cy", function(d) {
-                   return projection([d.lon, d.lat])[1];
-           })
-           .attr("r", 6)
-           .style("fill", "red");
-      });
+		
 
 	});
 
