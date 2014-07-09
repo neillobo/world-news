@@ -52,11 +52,11 @@ var noLoc = [-28.221661,38.317294];
     .style("opacity", 1e-6)
     .style("background", "rgba(250,250,250,.7)");
 
-   //  boxtip.append("img")
-			// .attr("id", "boxtipImg")
-			// .attr("height", 200)
-			// .attr("width", 200)
-			// .style("opacity", "1");
+    boxtip.append("img")
+			.attr("id", "boxtipImg")
+			.attr("height", 160)
+			.attr("width", 200)
+			.style("opacity", "1");
 
 
 	 g.selectAll("circle")
@@ -94,10 +94,13 @@ var noLoc = [-28.221661,38.317294];
 
 		var updateDetails = function(article){
 			// debugger;
-			// var image = new Image();
-			// image.onload = function(){
-			// 	document.getElementById("boxtipImg").src = 'pictures/' + metor.cartodb_id + '.jpg';}
-			// image.src = 'pictures/' + metor.cartodb_id + '.jpg';
+			var image = new Image();
+			image.onload = function(){
+				console.log(article)
+				document.getElementById("boxtipImg").src = article.value.img;
+			}
+			console.log(article);
+			image.src = article.value.img;
 
 			boxtip.selectAll("div").remove();
 			boxtip.selectAll("div")
