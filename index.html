@@ -24,7 +24,7 @@ var noLoc = [-28.221661,38.317294];
 	    .data(data)
 	    .enter()
 	    .append("circle")
-	    .attr("r", 5)
+	    .attr("r", 6)
 	    .attr("cx", function(d) { 
 	    	if(d.value.coordinate){
 	    		var x = parseFloat(d.value.coordinate.latitude);
@@ -45,7 +45,7 @@ var noLoc = [-28.221661,38.317294];
 	    	else
 	    	  return projection(noLoc)[1]; 
 	    })
-	    .style("fill", "maroon");
+	    .style("fill", "#871B23");
 
 	  var boxtip = d3.select("body").append("div")
     .attr("class", "boxtip")
@@ -96,10 +96,10 @@ var noLoc = [-28.221661,38.317294];
 			// debugger;
 			var image = new Image();
 			image.onload = function(){
-				console.log(article)
+				// console.log(article)
 				document.getElementById("boxtipImg").src = article.value.img;
 			}
-			console.log(article);
+			console.log("Article is ",article);
 			image.src = article.value.img;
 
 			boxtip.selectAll("div").remove();
@@ -114,7 +114,7 @@ var noLoc = [-28.221661,38.317294];
 						})				
 						.attr("class", "boldDetail"); //add css for this class
 		}
-	},3000);
+	},5000);
 
 </script>
 
